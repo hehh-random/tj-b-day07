@@ -321,26 +321,54 @@ document.getElementById(
 
 
 
-if(now >= birthday){
+function checkBirthday(now){
 
+    const birthday = new Date(
+        now.getFullYear(),
+        birthdayDate.month - 1,
+        birthdayDate.day,
+        0,0,0
+    );
 
-countdownTitle.innerHTML =
-"It's finally your birthday!! 🎉";
+    const countdownText =
+        document.getElementById("countdownText");
 
+    const countdownTitle =
+        document.getElementById("countdownTitle");
 
-countdownText.innerHTML =
-"sooooo, are you readyyy😛???";
+    // Birthday has arrived
+    if (
+        now.getMonth() === birthdayDate.month - 1 &&
+        now.getDate() === birthdayDate.day
+    ) {
 
+        countdownTitle.innerHTML =
+            "It's finally your birthday!! 🎉";
 
-return;
+        countdownText.innerHTML =
+            "Sooooo... are you readyyy? 😛❤️";
 
+        return;
+    }
 
+    // Countdown
+    let difference = birthday - now;
+
+    if (difference < 0) {
+        birthday.setFullYear(now.getFullYear() + 1);
+        difference = birthday - now;
+    }
+
+    const h = Math.floor(difference / 1000 / 60 / 60);
+    const m = Math.floor((difference / 1000 / 60) % 60);
+    const s = Math.floor((difference / 1000) % 60);
+
+    countdownTitle.innerHTML =
+        "Almost time... 🌙";
+
+    countdownText.innerHTML =
+        `Only ${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")} until your surprise.`;
 }
-
-
-
-let difference =
-birthday - now;
 
 
 
@@ -1050,10 +1078,7 @@ checkCandles();
 function checkCandles(){
 
 
-const flames =
-document.querySelectorAll(
-".flame:not(.hidden)"
-);
+
 
 
 
@@ -1612,13 +1637,11 @@ document.getElementById(
 );
 
 
-box.innerHTML="";
-
-
-let text =
-finalMessage.join(
-"\n\n"
-);
+if(text[index] === "\n"){
+    box.innerHTML += "<br>";
+}else{
+    box.innerHTML += text[index];
+}
 
 
 
