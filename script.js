@@ -350,37 +350,37 @@ function checkBirthday(now){
 PAGE NAVIGATION
 ===============================*/
 
-
 if (continueBtn) {
 
-continueBtn.onclick=()=>{
+    continueBtn.onclick = () => {
 
-    const now=new Date();
+        const now = new Date();
 
-    if(
-        now.getMonth()!==birthdayDate.month-1 ||
-        now.getDate()!==birthdayDate.day
-    ){
-        alert("Not yet... ❤️");
-        return;
-    }
+        if (
+            now.getMonth() !== birthdayDate.month - 1 ||
+            now.getDate() !== birthdayDate.day
+        ) {
+            alert("Not yet... ❤️");
+            return;
+        }
+
+        midnightScreen.classList.remove("active");
+        homeScreen.classList.add("active");
+
+    };
 
 }
-
-
 
 if (beginAdventure) {
 
-beginAdventure.onclick = () => {
+    beginAdventure.onclick = () => {
 
-homeScreen.classList.remove("active");
+        homeScreen.classList.remove("active");
+        treasureScreen.classList.add("active");
 
-treasureScreen.classList.add("active");
-
-};
+    };
 
 }
-
 
 
 
