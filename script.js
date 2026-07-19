@@ -1592,7 +1592,6 @@ startFinalAnimation();
 FINAL TYPEWRITER
 ===============================*/
 
-
 function startFinalAnimation(){
 
     const box =
@@ -1605,51 +1604,31 @@ function startFinalAnimation(){
 
     let index = 0;
 
-
     function write(){
 
         if(index < text.length){
 
-
             if(text[index] === "\n"){
-
                 box.innerHTML += "<br>";
-
-            }
-            else{
-
+            }else{
                 box.innerHTML += text[index];
-
             }
-
 
             index++;
 
-
-            setTimeout(
-                write,
-                55
-            );
-
+            setTimeout(write,55);
 
         }
 
     }
 
-
     write();
 
-
     createStars();
-
     createFireflies();
-
     createConfetti();
 
-
 }
-}
-
 
 
 
