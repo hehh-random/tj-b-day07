@@ -294,32 +294,6 @@ now
 
 
 
-function checkBirthday(now){
-
-
-const birthday =
-new Date(
-now.getFullYear(),
-birthdayDate.month-1,
-birthdayDate.day,
-0,0,0
-);
-
-
-
-const countdownText =
-document.getElementById(
-"countdownText"
-);
-
-
-
-const countdownTitle =
-document.getElementById(
-"countdownTitle"
-);
-
-
 
 function checkBirthday(now){
 
@@ -330,6 +304,7 @@ function checkBirthday(now){
         0,0,0
     );
 
+    {
     const countdownTitle =
         document.getElementById("countdownTitle");
 
@@ -351,7 +326,6 @@ function checkBirthday(now){
         return;
     }
 
-    // If birthday already passed this year
     if(now > birthday){
         birthday.setFullYear(now.getFullYear()+1);
     }
@@ -377,7 +351,6 @@ function checkBirthday(now){
         `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
 
-}
 
 
 
@@ -422,10 +395,9 @@ GIFT SYSTEM
 
 let openedGifts =
 JSON.parse(
-localStorage.getItem(
-"openedGifts"
+localStorage.getItem("openedGifts")
 )
-)
+?.map(String)
 ||
 [];
 
@@ -461,18 +433,16 @@ openedGifts.length;
 
 
 progressText.innerHTML =
-
 `${count} / 6 Gifts`;
 
 
 
 progressFill.style.width =
-
 `${(count/6)*100}%`;
 
 
 
-if(count===6){
+if(count >= 6){
 
 
 const finalButton =
@@ -481,11 +451,17 @@ document.getElementById(
 );
 
 
-finalButton.disabled=false;
+
+if(finalButton){
+
+finalButton.disabled = false;
 
 
 finalButton.innerHTML =
 "✨ Open Final Surprise";
+
+
+}
 
 
 }
@@ -1045,23 +1021,15 @@ remaining++;
 
 
 
-if(
-remaining===0
-){
+if(remaining===0){
 
+    document
+    .getElementById("wishMessage")
+    .classList.remove("hidden");
 
-document
-.getElementById(
-"wishMessage"
-)
-.classList.remove(
-"hidden"
-);
+    createConfetti();
 
-
-
-createConfetti();
-
+    finishGift("3");
 
 }
 
@@ -1243,44 +1211,38 @@ document.getElementById(
 
 
 
+let openedNotes = 0;
+
 memoryButtons.forEach(button=>{
 
+    button.onclick = ()=>{
 
-button.onclick =
-()=>{
+        if(button.classList.contains("open")){
+            return;
+        }
 
+        button.classList.add("open");
 
-button.classList.add(
-"open"
-);
+        openedNotes++;
 
+        let randomMemory =
+        memories[
+            Math.floor(
+                Math.random()*memories.length
+            )
+        ];
 
+        memoryText.innerHTML = randomMemory;
 
-let randomMemory =
+        if(openedNotes === memoryButtons.length){
 
-memories[
-Math.floor(
-Math.random()
-*
-memories.length
-)
-];
+            finishGift("4");
 
+        }
 
-
-memoryText.innerHTML =
-
-randomMemory;
-
-
-
-};
-
+    };
 
 });
-
-
-
 
 
 
@@ -1335,6 +1297,9 @@ garden.innerHTML="";
 
 
 
+let openedFlowers = 0;
+
+
 reasons.forEach(reason=>{
 
 
@@ -1374,17 +1339,38 @@ ${reason}
 `;
 
 
-
-flower.onclick =
-()=>{
+flower.onclick = ()=>{
 
 
-flower.classList.toggle(
-"open"
-);
+if(
+flower.classList.contains("open")
+){
+
+return;
+
+}
+
+
+flower.classList.add("open");
+
+
+openedFlowers++;
+
+
+
+if(
+openedFlowers === reasons.length
+){
+
+
+finishGift("5");
+
+
+}
 
 
 };
+
 
 
 
@@ -1413,7 +1399,9 @@ const playVoice = document.getElementById("playVoice");
 
 if(playVoice && voiceAudio){
 
+
 playVoice.onclick = () => {
+
 
     if(music){
 
@@ -1421,12 +1409,21 @@ playVoice.onclick = () => {
 
     }
 
+
+    voiceAudio.pause();
+
     voiceAudio.currentTime = 0;
+
 
     voiceAudio.play();
 
+
 };
+
+
+
 voiceAudio.onended = () => {
+
 
     if(music){
 
@@ -1434,7 +1431,17 @@ voiceAudio.onended = () => {
 
     }
 
+
+    // 🎵 Gift 6 completed
+    finishGift("6");
+
+
 };
+
+
+
+
+
 
 }
 
@@ -1593,54 +1600,55 @@ function startFinalAnimation(){
 
     box.innerHTML = "";
 
-    let text = finalMessage.join("\n\n");
+    let text =
+    finalMessage.join("\n\n");
 
     let index = 0;
+
 
     function write(){
 
         if(index < text.length){
 
+
             if(text[index] === "\n"){
+
                 box.innerHTML += "<br>";
-            }else{
-                box.innerHTML += text[index];
+
             }
+            else{
+
+                box.innerHTML += text[index];
+
+            }
+
 
             index++;
 
-            setTimeout(write,55);
+
+            setTimeout(
+                write,
+                55
+            );
+
 
         }
 
     }
 
+
     write();
 
+
     createStars();
+
     createFireflies();
+
     createConfetti();
 
-}
-
-
-{
-
-
-
-write();
-
-
-
-createStars();
-
-createFireflies();
-
-createConfetti();
-
 
 }
-
+}
 
 
 
