@@ -534,56 +534,17 @@ openGift(id,card);
 
 
 
-function openGift(id,card){
+function openGift(id, card){
 
+    card.classList.add("opening");
 
-card.classList.add(
-"opening"
-);
+    setTimeout(() => {
 
+        openGiftModal(id);
 
-if(
-!openedGifts.includes(id)
-){
-
-
-openedGifts.push(id);
-
-card.classList.add("completed");
-
-localStorage.setItem(
-
-"openedGifts",
-
-JSON.stringify(
-openedGifts
-)
-
-);
-
+    },600);
 
 }
-
-
-
-updateProgress();
-
-
-
-setTimeout(()=>{
-
-
-openGiftModal(id);
-
-
-
-},600);
-
-
-
-}
-
-
 
 updateProgress();
 
@@ -816,8 +777,7 @@ function typeLetter(){
 
         }else{
 
-            finishGift();
-
+            finishGift("1");
         }
 
     }
@@ -829,23 +789,25 @@ function typeLetter(){
 
 
 
-function finishGift(){
+function finishGift(id){
 
-    if(!openedGifts.includes("1")){
+    if(openedGifts.includes(id)) return;
 
-        openedGifts.push("1");
+    openedGifts.push(id);
 
-        localStorage.setItem(
-            "openedGifts",
-            JSON.stringify(openedGifts)
-        );
+    localStorage.setItem(
+        "openedGifts",
+        JSON.stringify(openedGifts)
+    );
 
-        document
-        .querySelector('[data-gift="1"]')
-        .classList.add("completed");
+    const card =
+        document.querySelector(`[data-gift="${id}"]`);
 
-        updateProgress();
+    if(card){
+        card.classList.add("completed");
     }
+
+    updateProgress();
 
 }
 
@@ -894,6 +856,8 @@ caption:"My favourite person ❤️"
 
 ];
 
+let developedPhotos = 0;
+
 
 
 function createPolaroids(){
@@ -907,6 +871,7 @@ document.getElementById(
 
 
 gallery.innerHTML="";
+developedPhotos = 0;
 
 
 
@@ -942,45 +907,34 @@ ${photo.caption}
 
 
 
-card.onclick =
-()=>{
+card.onclick = ()=>{
 
+    if(card.classList.contains("developed")){
+        return;
+    }
 
-if(
-!card.classList.contains(
-"developed"
-)
-){
+    card.classList.add("shake");
 
+    setTimeout(()=>{
 
-card.classList.add(
-"shake"
-);
+        card.classList.remove("shake");
 
+        card.classList.add("developed");
 
+        developedPhotos++;
 
-setTimeout(()=>{
+        if(developedPhotos === photos.length){
 
+            finishGift("2");
 
-card.classList.remove(
-"shake"
-);
+        }
 
-
-card.classList.add(
-"developed"
-);
-
-
-
-},700);
-
-
-}
-
-
+    },700);
 
 };
+
+
+
 
 
 
