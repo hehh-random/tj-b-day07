@@ -434,51 +434,29 @@ document.getElementById(
 
 function updateProgress(){
 
+    const count = openedGifts.length;
 
-const count =
-openedGifts.length;
+    progressText.innerHTML = `${count} / 6 Gifts`;
 
+    progressFill.style.width = `${(count/6)*100}%`;
 
+    if(finalButton){
 
-progressText.innerHTML =
-`${count} / 6 Gifts`;
+        if(count >= 6){
 
+            finalButton.disabled = false;
+            finalButton.innerHTML = "✨ Open Final Surprise";
 
+        }else{
 
-progressFill.style.width =
-`${(count/6)*100}%`;
+            finalButton.disabled = true;
+            finalButton.innerHTML = "Locked";
 
+        }
 
-
-if(count >= 6){
-
-    finalButton.disabled = false;
-    finalButton.innerHTML = "✨ Open Final Surprise";
-
-}else{
-
-    finalButton.disabled = true;
-    finalButton.innerHTML = "Locked";
+    }
 
 }
-
-
-
-if(finalButton){
-
-finalButton.disabled = false;
-
-
-finalButton.innerHTML =
-"✨ Open Final Surprise";
-
-
-}
-
-
-
-}
-
 
 
 
@@ -869,38 +847,19 @@ POLAROID GALLERY
 ===============================*/
 
 
-
 const photos = [
 
-{
-image:"z.jpg",
-caption:"Our first memory ❤️"
-},
+{image:"z.jpg",caption:"❤️"},
 
-{
-image:"zz.jpg",
-caption:"A beautiful moment ✨"
-},
+{image:"zz.jpg",caption:"✨"},
 
-{
-image:"zzzz.jpg",
-caption:"Always smiling 💗"
-},
+{image:"zzz.jpg",caption:"🌸"},
 
-{
-image:"zzz.jpg",
-caption:"Little adventures 🌸"
-},
+{image:"zzzz.jpg",caption:"💗"},
 
-{
-image:"zzzzzz.jpg",
-caption:"Forever memories 🌙"
-},
+{image:"zzzzz.jpg",caption:"🌙"},
 
-{
-image:"zzzzzzz.jpg",
-caption:"My favourite person ❤️"
-}
+{image:"zzzzzz.jpg",caption:"❤️"}
 
 ];
 
@@ -2111,9 +2070,8 @@ restart.onclick = ()=>{
     }
 
     // Show treasure hunt again
-    finalScreen.classList.remove("active");
-    treasureScreen.classList.add("active");
-
+finalScreen.classList.remove("active");
+homeScreen.classList.add("active");
 };
 }
 
