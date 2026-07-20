@@ -899,35 +899,28 @@ MODAL
 ===============================*/
 
 .modal{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
 
-position:fixed;
+    display:none;
+    justify-content:center;
+    align-items:center;
 
-inset:0;
+    background:rgba(0,0,0,.45);
+    backdrop-filter:blur(10px);
 
-background:rgba(80,40,80,.25);
+    z-index:99999;
 
-backdrop-filter:blur(10px);
-
-display:none;
-
-align-items:center;
-
-justify-content:center;
-
-z-index:100;
-
-padding:20px;
-
+    padding:20px;
 }
-
 
 .modal.show{
-
-display:flex;
-
-animation:fadeUp .5s;
-
+    display:flex;
 }
+
 
 
 .modal-content{

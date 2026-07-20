@@ -488,17 +488,15 @@ openGift(id,card);
 
 });
 
-
 function openGift(id, card){
 
     card.classList.add("opening");
 
-    setTimeout(() => {
+    openGiftModal(id);
 
+    setTimeout(()=>{
         card.classList.remove("opening");
-        openGiftModal(id);
-
-    }, 600);
+    },500);
 
 }
 
@@ -536,11 +534,9 @@ GIFT MODAL SYSTEM
 ===============================*/
 
 
-const modal =
-document.getElementById(
-"giftModal"
-);
+const modal = document.getElementById("giftModal");
 
+console.log(modal);
 
 
 
@@ -551,79 +547,52 @@ document.querySelector(
 );
 
 
-
 function openGiftModal(id){
 
+    console.log("Opening Gift:", id);
 
-modal.classList.add(
-"show"
-);
+    modal.classList.add("show");
 
+    document.querySelectorAll(".gift-content").forEach(section=>{
+        section.classList.add("hidden");
+    });
 
+    const gift = document.getElementById(`gift${id}Content`);
 
-document
-.querySelectorAll(
-".gift-content"
-)
-.forEach(section=>{
+    if(gift){
+        gift.classList.remove("hidden");
+    }else{
+        console.error("Gift not found:", id);
+        return;
+    }
 
+    switch(id){
 
-section.classList.add(
-"hidden"
-);
+        case "1":
+            startLetter();
+            break;
 
+        case "2":
+            createPolaroids();
+            break;
 
-});
+        case "3":
+            startCake();
+            break;
 
+        case "4":
+            resetMemoryJar();
+            break;
 
+        case "5":
+            createFlowers();
+            break;
 
-const gift =
-document.getElementById(
-`gift${id}Content`
-);
-
-
-
-if(gift){
-
-gift.classList.remove(
-"hidden"
-);
-
-
-}
-
-
-
-/* Start specific gift */
-
-
-if(id==="1"){
-
-startLetter();
+        case "6":
+            break;
+    }
 
 }
-
-
-if(id==="2"){
-
-createPolaroids();
-
-}
-
-if(id==="3"){
-    startCake();
-}
-
-if(id==="4"){
-    resetMemoryJar();
-}
-
-
-}
-
-
-
 
 
 
@@ -1464,26 +1433,24 @@ voiceAudio.onended = ()=>{
 
 }
 
-if(closeModal){
-
-closeModal.onclick = () => {
+closeModal.onclick = ()=>{
 
     modal.classList.remove("show");
 
+    document.querySelectorAll(".gift-content").forEach(section=>{
+        section.classList.add("hidden");
+    });
+
     if(voiceAudio){
-
         voiceAudio.pause();
-
         voiceAudio.currentTime = 0;
-
     }
 
-if(music.paused){
-    music.play().catch(()=>{});
-}
-};
+    if(music && music.paused){
+        music.play().catch(()=>{});
+    }
 
-}
+};
 
 
 
