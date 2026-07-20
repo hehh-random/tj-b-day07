@@ -1235,11 +1235,6 @@ document.getElementById(
 let openedNotes = 0;
 function resetMemoryJar(){
 
-    if(openedGifts.includes("4")){
-        memoryText.innerHTML = "❤️ You've already opened every memory.";
-        return;
-    }
-
     openedNotes = 0;
 
     memoryText.innerHTML = "";
@@ -1249,6 +1244,7 @@ function resetMemoryJar(){
     });
 
 }
+
 
 
 
@@ -1629,7 +1625,8 @@ function startFinalAnimation(){
         if(index < text.length){
 
             if(text[index] === "\n"){
-                box.innerHTML += "<br>";
+                letterText.innerHTML += "<br><br>";
+            }
             }else{
                 box.innerHTML += text[index];
             }
@@ -2071,6 +2068,7 @@ restart.onclick = ()=>{
 
     // Show treasure hunt again
 finalScreen.classList.remove("active");
+treasureScreen.classList.remove("active");
 homeScreen.classList.add("active");
 };
 }
