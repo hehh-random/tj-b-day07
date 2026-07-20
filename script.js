@@ -869,7 +869,7 @@ POLAROID GALLERY
 const photos = [
 
 {
-image:"z.jpeg",
+image:"z.jpg",
 caption:"Our first memory ❤️"
 },
 
