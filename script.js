@@ -668,8 +668,6 @@ window.addEventListener("click", (e) => {
 
 
 
-
-
 /* ===============================
 GIFT 1
 LOVE LETTER
@@ -697,67 +695,163 @@ const letterMessage = [
 ];
 
 
+
 const envelope =
 document.querySelector(".envelope");
+
 
 const letterText =
 document.getElementById("letterText");
 
+
+
+let typingRunning = false;
+
+
+
 function startLetter(){
-    
+
 
     envelope.classList.remove("open");
 
-    letterText.innerHTML="";
 
-    envelope.onclick=null;
+    letterText.innerHTML = "";
 
-    envelope.onclick=()=>{
+
+    // If already opened before
+    if(localStorage.getItem("letterOpened") === "true"){
+
 
         envelope.classList.add("open");
 
+
+        letterText.innerHTML =
+        letterMessage.join("<br><br>");
+
+
+        return;
+
+    }
+
+
+
+    envelope.onclick = ()=>{
+
+
+        // Stop double clicking
+        if(typingRunning){
+            return;
+        }
+
+
+
+        // Save opened status
+        localStorage.setItem(
+            "letterOpened",
+            "true"
+        );
+
+
+
+        envelope.classList.add("open");
+
+
+
+        typingRunning = true;
+
+
+
         setTimeout(()=>{
+
+
             typeLetter();
+
+
+
         },700);
+
+
 
     };
 
 }
 
+
+
+
 function typeLetter(){
 
-    letterText.innerHTML="";
 
-    let text = letterMessage.join("\n\n");
+    letterText.innerHTML = "";
 
-    let index=0;
+
+    let text =
+    letterMessage.join("\n\n");
+
+
+    let index = 0;
+
+
 
     function typing(){
 
-        if(index<text.length){
 
-            if(text[index]==="\n"){
-                letterText.innerHTML+="<br>";
-            }else{
-                letterText.innerHTML+=text[index];
+
+        if(index < text.length){
+
+
+
+            if(text[index] === "\n"){
+
+
+                letterText.innerHTML += "<br>";
+
+
             }
+
+            else{
+
+
+                letterText.innerHTML += text[index];
+
+
+            }
+
+
 
             index++;
 
-            setTimeout(typing,40);
 
-        }else{
+
+            setTimeout(
+                typing,
+                40
+            );
+
+
+
+        }
+
+        else{
+
+
+            typingRunning = false;
+
 
             finishGift("1");
+
+
         }
+
 
     }
 
+
+
     typing();
 
+
 }
-
-
 
 function finishGift(id){
 
