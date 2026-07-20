@@ -676,13 +676,24 @@ LOVE LETTER
 
 const letterMessage = [
 
-"yooo bbyyyy💋😚😚",
-"Happyyyy Birthdayyyy bachaaaaa😭🎉💋",
-"Thank you meri life mai aane ke liye aur itna pyaar, care aur patience rkhne ke liye😭.",
+"yooo bbyyyy 💋😚😚",
+
+"Happyyyy Birthdayyyy bachaaaaa 😭🎉💋",
+
+"Thank you meri life mai aane ke liye ❤️",
+
+"Aur itna pyaar, care aur patience rkhne ke liye 😭",
+
 "I wanted to create something special for you.",
-"Not just a normal birthday wish...",
+
+"Not just a normal birthday wish... ✨",
+
 "Thank you for all the smiles, laughs, and moments we share.",
+
+"You make my ordinary days feel magical 🌸",
+
 "I hope your day is as beautiful as your heart.",
+
 "Happy Birthday ❤️"
 
 ];
@@ -804,10 +815,9 @@ function typeLetter(){
 
             index++;
 
-
             setTimeout(
                 typing,
-                35
+                55
             );
 
 

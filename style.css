@@ -1058,15 +1058,17 @@ transform:translate(-50%,-50%);
 
 .envelope.open .envelope-front{
 
-transform:
-
-rotateX(180deg);
+transform:rotateX(180deg);
 
 transition:1s;
 
 transform-origin:bottom;
 
+opacity:.2;
+
 }
+
+
 
 .letter{
 
@@ -1074,19 +1076,24 @@ position:absolute;
 
 width:90%;
 
-min-height:220px;
+min-height:300px;
 
-max-height:420px;
+max-height:600px;
 
 left:5%;
 
 bottom:0;
 
-background:#fffdfd;
+background:
 
-padding:25px;
+linear-gradient(
+white,
+#fff8fb
+);
 
-border-radius:15px;
+padding:35px;
+
+border-radius:18px;
 
 box-shadow:var(--shadow);
 
@@ -1097,6 +1104,16 @@ overflow-x:hidden;
 transition:1s;
 
 scrollbar-width:none;
+
+z-index:5;
+
+}
+
+
+
+.envelope.open .letter{
+
+transform:translateY(-230px);
 
 }
 
@@ -1116,22 +1133,27 @@ transform:translateY(-180px);
 
 #letterText{
 
-font-family:"Caveat";
+font-family:"Caveat", cursive;
 
-font-size:1.7rem;
+font-size:1.8rem;
 
-line-height:1.5;
+line-height:1.8;
 
 text-align:left;
 
+color:#5b5064;
+
 white-space:normal;
 
-word-wrap:break-word;
+word-break:normal;
 
-overflow-wrap:break-word;
+overflow-wrap:anywhere;
+
+position:relative;
+
+z-index:10;
 
 }
-
 
 /* ===============================
 POLAROID GALLERY
