@@ -784,60 +784,44 @@ function startLetter(){
 
 function typeLetter(){
 
-    letterText.innerHTML = "";
-
-
     let text = letterMessage.join("\n\n");
-
 
     let index = 0;
 
-
+    letterText.innerHTML = "";
 
     function typing(){
 
-
-        if(index < text.length){
-
-
-            if(text[index] === "\n"){
-
-                letterText.innerHTML += "<br><br>";
-
-            }
-
-            else{
-
-                letterText.innerHTML += text[index];
-
-            }
-
-
-            index++;
-
-            setTimeout(
-                typing,
-                55
-            );
-
-
-        }
-
-        else{
+        if(index >= text.length){
 
             typingRunning = false;
 
             finishGift("1");
 
+            return;
         }
 
+        if(text[index] === "\n"){
+
+            letterText.innerHTML += "<br>";
+
+        }else{
+
+            letterText.innerHTML += text[index];
+
+        }
+
+        index++;
+
+        setTimeout(typing,45);
 
     }
-
 
     typing();
 
 }
+
+
 
 function finishGift(id){
 
@@ -961,13 +945,13 @@ card.innerHTML = `
 
 <div class="polaroid-image">
 
-<img src="z.jpg" alt="Memory">
-</div>
+<img src="${photo.image}" alt="Memory">
 
+</div>
 
 <div class="polaroid-caption">
 
-hehheee 
+${photo.caption}
 
 </div>
 
@@ -1304,37 +1288,36 @@ function resetMemoryJar(){
 }
 
 
+
+
 memoryButtons.forEach(button=>{
 
     button.onclick = ()=>{
 
-        if(button.classList.contains("open")){
-            return;
-        }
-
-        button.classList.add("open");
-
-        openedNotes++;
-
         let randomMemory =
         memories[
-            Math.floor(
-                Math.random()*memories.length
-            )
+            Math.floor(Math.random()*memories.length)
         ];
 
         memoryText.innerHTML = randomMemory;
 
-        if(openedNotes === memoryButtons.length){
+        if(!button.classList.contains("open")){
 
-            finishGift("4");
+            button.classList.add("open");
+
+            openedNotes++;
+
+            if(openedNotes === memoryButtons.length){
+
+                finishGift("4");
+
+            }
 
         }
 
     };
 
 });
-
 
 
 /* ===============================
@@ -2167,6 +2150,6 @@ if you want a reset option.
 
 /* =========================================================
 
-   SCRIPT.JS COMPLETE ❤️
+   SCRIPT.JS COMPLETE 
 
 =========================================================*/
