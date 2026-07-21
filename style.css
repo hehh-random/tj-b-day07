@@ -1108,7 +1108,7 @@ z-index:5;
 
 .envelope.open .letter{
     z-index:5;
-    transform:translateY(-230px);
+    transform:translateY(-10px);
 }
 
 .letter::-webkit-scrollbar{
