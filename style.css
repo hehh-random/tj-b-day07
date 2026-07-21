@@ -1027,7 +1027,7 @@ border-radius:15px;
 
 box-shadow:var(--shadow);
 
-z-index:1;
+z-index:5;
 
 }
 
@@ -1068,47 +1068,32 @@ opacity:.2;
     position:absolute;
     width:92%;
     left:4%;
-    bottom:-100%;
+    bottom:-220px;
 
     min-height:420px;
     max-height:70vh;
 
     overflow-y:auto;
 
-left:5%;
+    background:linear-gradient(white,#fff8fb);
 
-bottom:0;
+    padding:35px;
+    border-radius:18px;
+    box-shadow:var(--shadow);
 
-background:
+    overflow-x:hidden;
+    transition:1s;
 
-linear-gradient(
-white,
-#fff8fb
-);
+    scrollbar-width:none;
 
-padding:35px;
-
-border-radius:18px;
-
-box-shadow:var(--shadow);
-
-overflow-y:auto;
-
-overflow-x:hidden;
-
-transition:1s;
-
-scrollbar-width:none;
-
-z-index:5;
-
+    z-index:1;
 }
 
 
 
 .envelope.open .letter{
-    z-index:5;
-    transform:translateY(-10px);
+    z-index:1;
+    transform:translateY(-180px);
 }
 
 .letter::-webkit-scrollbar{
