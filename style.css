@@ -925,19 +925,19 @@ MODAL
 
 .modal-content{
 
-width:min(850px,95vw);
+    width:min(850px,95vw);
 
-max-height:90vh;
+    max-height:90vh;
 
-overflow-y:auto;
+    overflow-y:auto;
 
-overscroll-behavior:contain;
+    overscroll-behavior:contain;
 
-padding:45px;
+    padding:45px;
 
-position:relative;
+    position:relative;
 
-text-align:center;
+    text-align:center;
 
 }
 
