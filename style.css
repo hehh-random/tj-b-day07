@@ -1540,7 +1540,7 @@ font-size:2.3rem;
 
 width:270px;
 
-height:200px;
+height:320px;
 
 }
 
@@ -3005,4 +3005,40 @@ opacity:1;
     box-shadow:0 15px 35px rgba(0,0,0,.12);
     z-index:999999;
     animation:fadeUp .5s;
+}
+
+
+
+.fade-out{
+
+opacity:0!important;
+
+transition:.6s ease;
+
+pointer-events:none;
+
+}
+
+
+.glass:hover{
+
+transform:translateY(-5px);
+
+box-shadow:
+0 25px 60px rgba(0,0,0,.15);
+
+}
+
+
+button{
+
+overflow:hidden;
+
+}
+
+button:hover{
+
+filter:
+brightness(1.05);
+
 }

@@ -72,11 +72,16 @@ window.addEventListener(
 
 setTimeout(()=>{
 
+loadingScreen.classList.add("fade-out");
+
+setTimeout(()=>{
 
 loadingScreen.classList.remove("active");
-
+loadingScreen.classList.remove("fade-out");
 
 vaultScreen.classList.add("active");
+
+},600);
 
 
 },3500);
@@ -186,12 +191,16 @@ function unlockVault(){
     // Play music
 
     if(music){
-    music.volume = 0.5;
-    music.play().catch(() => {
-        console.log("Autoplay blocked.");
-    });
+        music.volume = 0.5;
 
-}
+        music.play().catch(()=>{
+            console.log("Waiting for user interaction");
+
+        });
+
+    }
+
+
 
 setTimeout(()=>{
 
@@ -773,9 +782,7 @@ function typeLetter(){
             letterText.innerHTML += "<br>";
 
         }else{
-
-            letterText.innerHTML += text[index];
-
+            letterText.textContent += text[index];
         }
 
         index++;
@@ -848,8 +855,8 @@ const photos = [
 
 ];
 
-let developedPhotos = 0;
-
+let developedPhotos = 
+Number(localStorage.getItem("developedPhotos")) || 0;
 
 
 function createPolaroids(){
@@ -923,6 +930,10 @@ card.onclick = ()=>{
 
         developedPhotos++;
 
+        localStorage.setItem(
+            "developedPhotos",
+            developedPhotos
+        );
         if(developedPhotos === photos.length){
 
             finishGift("2");
@@ -1075,7 +1086,7 @@ const colors = [
 
 for(
 let i=0;
-i<80;
+i<40;
 i++
 ){
 
@@ -1316,8 +1327,8 @@ garden.innerHTML="";
 
 
 
-let openedFlowers = 0;
-
+let openedFlowers =
+Number(localStorage.getItem("openedFlowers")) || 0;
 
 reasons.forEach(reason=>{
 
@@ -1372,9 +1383,12 @@ return;
 
 flower.classList.add("open");
 
-
 openedFlowers++;
 
+localStorage.setItem(
+"openedFlowers",
+openedFlowers
+);
 
 
 if(
@@ -1702,11 +1716,8 @@ heart.remove();
 
 
 
-setInterval(
-createHeart,
-1200
-);
-
+let heartInterval =
+setInterval(createHeart,1200);
 
 
 
@@ -1772,11 +1783,8 @@ sparkle.remove();
 
 
 
-setInterval(
-createSparkle,
-700
-);
-
+let sparkleInterval =
+setInterval(createSparkle,700);
 
 
 
@@ -2011,13 +2019,27 @@ document.getElementById(
 
 if(restart){
 
-restart.onclick = ()=>{
+    restart.onclick = ()=>{
+
+        clearInterval(heartInterval);
+        clearInterval(sparkleInterval);
+
+
 
     // Clear everything saved
     localStorage.removeItem("openedGifts");
     localStorage.removeItem("letterOpened");
 
     openedGifts = [];
+    
+    developedPhotos = 0;
+
+    localStorage.removeItem(
+        "developedPhotos"
+    );
+
+    openedNotes = 0;
+    resetMemoryJar();
 
     // Reset progress
     updateProgress();
