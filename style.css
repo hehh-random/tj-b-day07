@@ -922,6 +922,7 @@ MODAL
 }
 
 
+
 .modal-content{
     width:min(850px,95vw);
     max-height:90vh;
@@ -930,6 +931,7 @@ MODAL
     position:relative;
     text-align:center;
 }
+
 
 .closeModal{
 
