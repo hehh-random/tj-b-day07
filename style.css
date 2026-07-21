@@ -922,25 +922,14 @@ MODAL
 }
 
 
-
 .modal-content{
-
-width:min(850px,95vw);
-
-max-height:90vh;
-
-overflow-y:auto;
-
-overscroll-behavior:contain;
-
-padding:45px;
-
-position:relative;
-
-text-align:center;
-
+    width:min(850px,95vw);
+    max-height:90vh;
+    overflow:hidden;      /* ← change this */
+    padding:45px;
+    position:relative;
+    text-align:center;
 }
-
 
 .closeModal{
 
