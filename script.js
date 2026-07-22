@@ -1161,15 +1161,15 @@ MEMORY JAR
 
 const memories = [
 
-"Remember when we laughed for no reason? ❤️",
+"Warning: Birthday boy detected. Cuteness level = Illegal. 😛",
 
-"That one conversation I will never forget ✨",
+"Tumhari koi buri photo nahi mili. 😂✨",
 
-"Every small moment with you becomes special 🌸",
+"Aaj telaaaa din h... toh overacting allowed hai.🌸",
 
 "Thank you for always being there 💗",
 
-"You make ordinary days feel magical 🌙",
+"Bas ek request... aaj poora din smile karna.",
 
 "I hope we create many more memories together ⭐"
 
